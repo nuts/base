@@ -6,12 +6,12 @@ set -x
 
 ln -fs /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 
-cat > /etc/apt/sources.list <<EOF
-deb http://archive.ubuntu.com/ubuntu trusty main
-deb http://archive.ubuntu.com/ubuntu trusty-security main
-deb http://archive.ubuntu.com/ubuntu trusty-updates main
-deb http://archive.ubuntu.com/ubuntu trusty universe
-EOF
+# cat > /etc/apt/sources.list <<EOF
+# deb http://archive.ubuntu.com/ubuntu trusty main
+# deb http://archive.ubuntu.com/ubuntu trusty-security main
+# deb http://archive.ubuntu.com/ubuntu trusty-updates main
+# deb http://archive.ubuntu.com/ubuntu trusty universe
+# EOF
 
 apt-get update
 apt-get install -y --force-yes \
@@ -56,6 +56,7 @@ apt-get install -y --force-yes \
     php5-dev \
     php-pear \
     php5-imap \
+    php5-mysqlnd \
     php5-pspell \
     php5-json \
     php5-curl \
@@ -89,12 +90,12 @@ a2enmod ssl expires rewrite headers proxy proxy_http remoteip
 # TODO address logging in general
 # a2enconf _jsonlog
 
-# locales
-apt-cache search language-pack \
-    | cut -d ' ' -f 1 \
-    | grep -v '^language\-pack\-\(gnome\|kde\)\-' \
-    | grep -v '\-base$' \
-    | xargs apt-get install -y --force-yes --no-install-recommends
+# # locales
+# apt-cache search language-pack \
+#     | cut -d ' ' -f 1 \
+#     | grep -v '^language\-pack\-\(gnome\|kde\)\-' \
+#     | grep -v '\-base$' \
+#     | xargs apt-get install -y --force-yes --no-install-recommends
 
 cd /
 rm -rf /var/cache/apt/archives/*.deb

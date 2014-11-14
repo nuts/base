@@ -1,2 +1,2 @@
 build:
-	docker build -t nuts/stack .
+	docker build -t nuts/base .
