@@ -79,9 +79,6 @@ apt-get install -y --force-yes newrelic-sysmond newrelic-php5
 npm install coffee-script -g
 ln -s /usr/bin/nodejs /usr/bin/node
 
-a2enmod ssl expires rewrite headers proxy proxy_http remoteip
-# TODO address logging in general
-# a2enconf _jsonlog
 
 cd /
 rm -rf /var/cache/apt/archives/*.deb
@@ -107,14 +104,6 @@ echo -e "\nRemaining suspicious security bits:"
   pruned_find -perm /u+s
   pruned_find -perm /g+s
   pruned_find -perm /+t
-) | sed -u "s/^/  /"
-
-echo -e "\nInstalled versions:"
-(
-  git --version
-  ruby -v
-  gem -v
-  python -V
 ) | sed -u "s/^/  /"
 
 echo -e "\nSuccess!"
